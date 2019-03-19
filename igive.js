@@ -2353,6 +2353,7 @@ jQuery(function(){(function($,dashboarddata,fixeddata,basicfunctions,visualizati
       }
       else{
         try{
+          JSON.parse(igivecookie);
           Cookies.set("igive",igivecookie,{expires:3650});
         }
         catch(e){
