@@ -127,7 +127,7 @@ jQuery(function(){
     fixeddata.chartheight=350;//in pixels
     fixeddata.timelinewidth=850;//in pixels
     fixeddata.timelineheight=350;//in pixels
-    fixeddata.othertabs=["edit","profile"];
+    fixeddata.othertabs=["edit"];
     fixeddata.ajaxformurl="/igiveajax";
     fixeddata.pledgepercentageerrormargin=0.005;
 

@@ -145,17 +145,21 @@ jQuery(function(){(function($,dashboarddata,fixeddata,basicfunctions,visualizati
   //initialise tabs
   $("#dashboardtabs").tabs({"active":(function(){
     if(dashboarddata.donations.length==0&&dashboarddata.recurringdonations.length==0){
+      fixeddata.activetab="edit";
       return fixeddata.endyear-fixeddata.startyear+fixeddata.othertabs.indexOf("edit")+2;
     }
     if(fixeddata.istryinggiving){
+      fixeddata.activetab="alltime";
       return fixeddata.endyear-fixeddata.startyear+1;
     }
     var mostrecentdonationdate=new Date(Math.max.apply(Math,basicfunctions.unpackRecurringDonations(dashboarddata.donations,dashboarddata.recurringdonations,new Date(fixeddata.endyear+1,dashboarddata.yearstartmonth,dashboarddata.yearstartdate).addDays(-1)).transpose()[0]));
     for(var year=fixeddata.endyear;year>fixeddata.startyear-1;year--){
       if(mostrecentdonationdate>=new Date(year,dashboarddata.yearstartmonth,dashboarddata.yearstartdate)){
+        fixeddata.activetab=year+"";
         return fixeddata.endyear-year;
       }
     }
+    fixeddata.activetab="alltime";
     return fixeddata.endyear-fixeddata.startyear+1;
   })()});
   $("#dashboardtabs").bind("tabsactivate",function(event,ui){
