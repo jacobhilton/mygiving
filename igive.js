@@ -2345,7 +2345,7 @@ jQuery(function(){(function($,dashboarddata,fixeddata,basicfunctions,visualizati
     if(confirm("Are you sure? This will overwrite any previous data.")){
       var igivecookie=$("#porttext").val();
       if(igivecookie==""||typeof(igivecookie)=="undefined"){
-        Cookies.remove("igivecookie");
+        Cookies.remove("igive");
       }
       else{
         try{
