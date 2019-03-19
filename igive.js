@@ -2342,15 +2342,20 @@ jQuery(function(){(function($,dashboarddata,fixeddata,basicfunctions,visualizati
     $("#porttext").select();
   });
   $("#portsavechanges").click(function(event){
-    try{
-      var igivecookie=JSON.parse(jQuery("#porttext").val());
-      if(confirm("Are you sure? This will overwrite any previous data.")){
-        Cookies.set("igive",JSON.stringify(igivecookie),{expires:3650});
-        window.location.reload(false);
+    if(confirm("Are you sure? This will overwrite any previous data.")){
+      var igivecookie=$("#porttext").val();
+      if(igivecookie==""||typeof(igivecookie)=="undefined"){
+        Cookies.clear("igivecookie");
       }
-    }
-    catch(e){
-      alert(e);
+      else{
+        try{
+          Cookies.set("igive",igivecookie,{expires:3650});
+        }
+        catch(e){
+          alert(e);
+        }
+      }
+      window.location.reload(false);
     }
   });
   (function(){
