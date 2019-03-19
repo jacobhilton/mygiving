@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html><head>
+
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="igive.css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<script src="https://www.google.com/jsapi"></script>
+<script src="js.cookie.js"></script>
+<script src="tooltip.min.js"></script>
+<script src="constants.js"></script>
+<script src="basicfunctions.js"></script>
+<script src="igive.js"></script>
+<style>
+#ui-datepicker-div{
+  display:none;
+}
+</style>
+<script type="text/javascript">
+Drupal={settings:{igive:{
+  dashboarddata:{
+    "defaultcurrency":"USD",
+    "yearstartdate":1,
+    "yearstartmonth":0,
+    "donations":[],
+    "donationsadded":0,
+    "recurringdonations":[],
+    "recurringdonationsadded":0,
+    "income":{},
+    "lastupdated":null,
+    "authentication":0
+  },
+  fixeddata:{
+    userid:0,
+    percentagepledged:10,
+    ismember:true,
+    istryinggiving:false,
+    joindate:false,
+    trygivingstartdate:false,
+    trygivingenddate:false,
+    modulepath:"."
+  }
+}}};
+
+//overwrite jQuery ajax function for local version
+jQuery.post=function(a,b,c){
+  if(typeof c=="function"){
+    c({"status":"success","timestamp":Math.round((new Date()).getTime()/1000)},"","");
+    var igivecookie=Drupal.settings.igive;
+    igivecookie.fixeddata={
+      userid:igivecookie.fixeddata.userid,
+      percentagepledged:igivecookie.fixeddata.percentagepledged,
+      ismember:igivecookie.fixeddata.ismember,
+      istryinggiving:igivecookie.fixeddata.istryinggiving,
+      trygivingstartdate:igivecookie.fixeddata.trygivingstartdate,
+      trygivingenddate:igivecookie.fixeddata.trygivingenddate,
+      modulepath:igivecookie.fixeddata.modulepath
+    };
+    igivecookie=JSON.stringify(igivecookie);
+    jQuery("#porttext").val(igivecookie);
+    Cookies.set("igive",igivecookie,{expires:3650});
+  }
+};
+
+(function(){
+  try{
+    var igivecookie=JSON.parse(Cookies.get("igive"));
+  }
+  catch(e){
+    var igivecookie=false;
+  }
+  if(igivecookie){
+    Drupal.settings.igive=igivecookie;
+  }
+})();
+</script>
+
+</head><body>
+
+<div style="font-family: 'Source Sans Pro', Arial, sans-serif; font-size: 100%; font-weight: bold;">
+<p>This is a standalone version of My Giving, which was previously hosted by <a href="https://www.givingwhatwecan.org/">Giving What We Can</a>. Charity metrics and currency exchange rates are likely to be incorrect as they have not been updated since 2016.</p>
+<p>Please do not rely on this webpage to store your data, as it is only stored locally, in a cookie. Instead you should use the "Import/export data" feature to backup your data to disk.</p>
+</div>
+
+<div id="dashboardtabs">
+  <ul>
+    <li style="float:right;" id="edittab"><a href="#edit">Edit data</a></li>
+    <!--<li style="float:right;" id="profiletab"><a href="#profile">Profile</a></li>-->
+  </ul>
+  <!--<div id="profile">
+  </div>-->
+  <div id="edit">
+    <p>Default currency: <select id="currencyselect"></select></p>
+    <p>Year start date: <select id="yearstartselect"><option value="1/1">1st January</option><option value="1/4">1st April (UK corporate tax year)</option><option value="6/4">6th April (UK personal tax year)</option><option value="1/7">1st July (Australia tax year)</option><option value="1/10">1st October (USA tax year)</option><option value="Other">Other</option></select><span id="yearstartother"> &ndash; <select id="yearstartdateselect"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option></select> <select id="yearstartmonthselect"><option value="0">January</option><option value="1">February</option><option value="2">March</option><option value="3">April</option><option value="4">May</option><option value="5">June</option><option value="6">July</option><option value="7">August</option><option value="8">September</option><option value="9">October</option><option value="10">November</option><option value="11">December</option></select></span></p>
+    <h2>One-time donations</h2>
+    <p id="joindate"></p>
+    <p id="giftaidcalculator"><button id="showgiftaidcalculator">Show Gift Aid Calculator</button></p>
+    <table id="donationstable"><thead><tr><th>Date</th><th>Charity</th><th>Amount<br><small>(including Gift Aid)</small></th></tr></thead><tbody></tbody><tfoot></tfoot></table>
+    <h2>Recurring donations</h2>
+    <table id="recurringdonationstable"><thead><tr><th>Start date</th><th>End date (optional)</th><th>Frequency</th><th>Charity</th><th>Amount<br><small>(including Gift Aid)</small></th></tr></thead><tbody></tbody><tfoot></tfoot></table>
+    <!--<h2 id="publicheader">Share My Giving</h2>
+    <p id="publicstatus"></p>
+    <p id="publictoggle"><button id="publicbutton"></button></p>-->
+    <h2 id="incometableheader">Income</h2>
+    <p id="percentagepledged"></p>
+    <p id="incometableinfo"></p>
+    <p id="studentmodeinfo"></p>
+    <table id="incometable"><thead><tr><th>Year</th><th>Income<br><small>(pre-tax)</small></th><th>Total donations</th><th>Percentage donated</th></tr></thead><tbody><tr id="incometableshowbuttonrow"><td colspan="4"><button id="incometableshowbutton">show earlier years</button></td></tr></tbody></table>
+    <h2>Import/export data</h2>
+    <p>Membership data can be updated here, but be careful to maintain valid JSON ("yyyy-mm-dd" is a valid date format).</p>
+    <p><button id="portselectall">Select all</button><button id="portsavechanges">Save changes</button><br><textarea id="porttext" rows="8" cols="60"></textarea></p>
+    <div class="lastupdatedcontainer"><p>Last updated: <span class="lastupdated"></span></p></div>
+  </div>
+</div>
+
+</body></html>

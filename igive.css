@@ -1,0 +1,395 @@
+/********************************
+***     TABLE OF CONTENTS     ***
+
+tabs 
+pledge info 
+achievements info 
+pledge info
+
+
+*********************************
+********************************/
+
+/* unsorted */
+article.node{
+  max-width:60em;
+}
+
+#dashboardtabs table{
+  width:auto;
+  margin:0 auto;
+  border-collapse:collapse;
+  background-color:#ffffff;
+}
+#dashboardtabs th,#dashboardtabs td{
+  border:1px solid #aaaaaa;
+  padding:4px;
+}
+#dashboardtabs label{
+  display:block;
+  font-weight:normal;
+}
+
+#dashboardtabs .pledgemeter{
+  width:90%;
+  margin:30px auto 100px;
+}
+
+#dashboardtabs #incometable td{
+  text-align:center;
+}
+#dashboardtabs h2,#dashboardtabs .lastupdatedcontainer{
+  margin-top:50px;
+}
+
+#dashboardtabs #edit{
+  text-align:center;
+}
+
+#dashboardtabs select{
+  background-color:#ffffff;
+  margin-left:4px;
+}
+
+.sofar strong{
+  color:#6c0000;
+}
+
+#dashboardtabs .progress-links{
+  margin-top:40px;
+  margin-bottom:60px;
+}
+
+#alltimepledgemeters{
+  margin:0 auto;
+}
+
+#alltimepledgemeterheader{
+  margin-bottom:15px;
+}
+
+#alltimepledgemeterheaderdiv{
+  text-align:center;
+  margin:35px 0px -30px;
+}
+
+.collateddonationsdiv{
+  float:left;
+  text-align:center;
+}
+
+.donationstimelinediv{
+  clear:both;
+  text-align:center;
+}
+
+.donationstimelinediv>div{
+  margin:0 auto;
+}
+
+#dashboardtabs #edit h2{
+  margin-top:60px;
+}
+
+.overallpercentage{
+  font-size:1.2em;
+}
+
+#joindate{
+  margin-bottom:0px;
+}
+
+#giftaidcalculator{
+  font-size:0.8em;
+}
+
+/* pledgemeter */
+
+.pledgemeter{
+  position:relative;
+}
+.pledgebaron,.pledgebaroff{
+  height:16px;
+  position:absolute;
+  top:0px;
+  z-index:1;
+  background-repeat:repeat;
+}
+.pledgebaron{
+  left:0%;
+}
+.pledgebaroff{
+  left:0%;
+  width:100%;
+}
+.pledgebuttonleft,.pledgebuttonright,.pledgebuttonmiddle{
+  height:24px;
+  position:absolute;
+  top:-4px;
+  z-index:2;
+  margin-left:-10px;
+}
+.pledgebuttonleft,.pledgebuttonright{
+  width:21px;
+}
+.pledgebuttonmiddle{
+  width:19px;
+}
+.pledgetext{
+  position:absolute;
+  top:24px;
+  width:30px;
+  margin-left:-15px;
+  font-size:12px;
+  color:gray;
+  text-align:center;
+}
+.pledge0{
+  left:0%;
+}
+.pledge25{
+  left:25%;
+}
+.pledge50{
+  left:50%;
+}
+.pledge75{
+  left:75%;
+}
+.pledge100{
+  left:100%;
+}
+
+.studentmodetooltip{
+  height: 32px;
+  width: 32px;
+  vertical-align: middle;
+  margin-left: 2px;
+}
+.tooltip{
+  padding: 8px;
+  position: absolute;
+  z-index: 9999;
+  max-width: 300px;
+  -webkit-box-shadow: 0 0 5px #aaa;
+  box-shadow: 0 0 5px #aaa;
+  border-width: 2px;
+  background-color: #fff;
+}
+
+/* profile */
+
+#profilepic{
+  border: 10px solid white;
+  border-radius: 2px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  box-shadow: 0px 0px 2pt 2pt lightgrey;
+  margin-top: 16px;
+}
+#profilepic>img,#profilepic>a{
+  box-shadow: 0px 0px 1pt 1pt lightgrey;
+  border-radius: 2px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  display:block;
+}
+#profilepic>a{
+  height:120px;
+  width:120px;
+  position:relative;
+}
+#profilepic>a>div{
+  position:absolute;
+  text-align:center;
+  top:50%;
+  left:0px;
+  width:100%;
+  margin-top:-28px;
+}
+.profileitem{
+  clear: left;
+  margin: 0;
+  padding: 10px 0 2px 0;
+  padding-left: 205px;
+}
+.profileitemtitle{
+  font-weight: bold;
+  color: #6C0000;
+  float: left;
+  margin-left: -205px;
+  width: 200px;
+}
+#profiletable td{
+  padding-left: 30px;
+  vertical-align: top;
+  border: 0;
+  font-size: 18px;
+}
+.profilehr{
+  clear: both;
+  height: 1px;
+  width: 100%;
+  margin-top: 40px;
+  background-color: #B17678;
+}
+#profile .editbuttons{
+  text-align:center;
+}
+#profile .linkbuttonmedium{
+  margin:10px;
+}
+
+/**************/
+/* tog styles */
+/**************/
+
+/* overall*/
+.page-node-72 #content, .page-node-72 #mediabar {
+	background-color: #ecece4;
+}
+
+.page-node-72 #page-title {
+/*	text-align: left; would need to make width of this right to make left-aligned */
+	margin-bottom: 1em;
+}
+
+#dashboardtabs.ui-widget {
+font-family: "Source Sans Pro", Arial, sans-serif;
+font-size: 100%;
+border: none;
+padding: 0;
+border-radius: 0px;
+}
+
+/* tabs */
+
+#dashboardtabs .ui-tabs-nav {
+background: #f5f5f5; /* would need to make this apply to the bottom of inactive tabs (but can't select these), or else make this element extend below the bottom of these tabs: url(tab-bar-shadow-bottom.png) repeat-x left bottom */
+border: none;
+margin: 0;
+padding: 0;
+border-radius: 0px;
+}
+
+#dashboardtabs li.ui-state-default {
+background: #f5f5f5;
+border-right: 1px solid #bbb;
+border-bottom: none;
+border-left: none;
+border-top: none;
+
+margin: 0;
+border-radius: 0px;
+}
+
+#dashboardtabs .ui-tabs-nav a {
+	font-weight: bold;
+	color: #999;
+	font-size: 1.1em;
+  padding: 0.5em 0.7em;
+}
+
+/* tabs - active tab */
+#dashboardtabs .ui-tabs-nav .ui-state-active {
+	background: white;
+}
+
+#dashboardtabs .ui-tabs-nav .ui-state-active a {
+	color: #6c0000;
+}
+
+#dashboardtabs .ui-tabs-nav .ui-state-active+li { /* the li tab after the active tab */
+	background: url('tab-shadow-right-of-active-tab.png') repeat-y left top;
+}
+
+#dashboardtabs .ui-tabs-nav .ui-state-active {
+	background: white url('tab-shadow-left-of-active-tab.png') repeat-y left top;
+}
+
+#dashboardtabs #edittab a {
+	color: #444;
+}
+
+/* -- remove background from leftmost tab */
+#dashboardtabs .ui-tabs-nav #2014tab.ui-state-active {
+	background: white none;
+}
+
+
+/* pledge info */
+
+
+#dashboardtabs h2 {
+	text-align: center;
+	color: #6c0000;
+	margin-top: 0.5em; /* make just for pledge title? */
+}
+
+.pledgemetermessage, .alltimetablink {
+	text-align: center;
+	margin: 1em 0;
+}
+
+.isfulfilled {
+	font-weight: bold;
+	color: #6c0000;
+	margin: 1em 0;
+}
+
+.sofar {
+	margin: 0 1em;
+}
+
+.sofarexplanation {
+  margin: 1em 1em;
+  font-size: 0.8em;
+}
+
+.pledge-completion-social-media-share {
+	text-align: center;
+	margin: 1em 0;
+}
+
+/* achievements info */
+
+.wide-underline-header {
+	font-size: 1.2em;
+	font-weight: bold;
+}
+
+.wide-underline-header {
+	display: inline-block;
+	padding: 0 1em 0.25em;
+	border-bottom: 1px solid #6c0000;
+}
+
+.circle-charity-icon {
+	float: left;
+	margin-right: 1em;
+	width: 48px;
+}
+
+
+.donationeffectsdiv{
+  text-align:center;
+}
+
+.donationeffectsdiv>div{
+  text-align:left;
+  margin-bottom:60px;
+}
+
+
+/* bottom */
+
+.lastupdatedcontainer {
+	font-weight: bold;
+	color: #c1c1c1;
+	text-align: center;
+	font-size: 1.2em;
+}
