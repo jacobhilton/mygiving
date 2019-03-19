@@ -2360,6 +2360,7 @@ jQuery(function(){(function($,dashboarddata,fixeddata,basicfunctions,visualizati
       percentagepledged:igivecookie.fixeddata.percentagepledged,
       ismember:igivecookie.fixeddata.ismember,
       istryinggiving:igivecookie.fixeddata.istryinggiving,
+      joindate:igivecookie.fixeddata.joindate,
       trygivingstartdate:igivecookie.fixeddata.trygivingstartdate,
       trygivingenddate:igivecookie.fixeddata.trygivingenddate,
       modulepath:igivecookie.fixeddata.modulepath
