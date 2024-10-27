@@ -1172,8 +1172,11 @@ jQuery(function(){(function($,dashboarddata,fixeddata,basicfunctions,visualizati
               if(!checkedcharity){
                 alert("Please select a charity.");
               }
-              else if(basicfunctions.numval(donationstable.amountinputs[i].val(),2)<=0){
-                alert("Please enter a valid positive donation amount.");
+              else if(basicfunctions.numval(donationstable.amountinputs[i].val(),2)==0){
+                alert("Please enter a valid non-zero donation amount.")
+                donationstable.amountinputs[i].focus();
+              }
+              else if(basicfunctions.numval(donationstable.amountinputs[i].val(),2)<0&&(!confirm("Are you sure you meant to enter a negative donation amount? Click OK to continue (pie charts may break) or Cancel to go back."))){
                 donationstable.amountinputs[i].focus();
               }
               else{
@@ -1395,19 +1398,22 @@ jQuery(function(){(function($,dashboarddata,fixeddata,basicfunctions,visualizati
             if(!checkedcharity){
               alert("Please select a charity.");
             }
-            else if(basicfunctions.numval(donationstable.footamountinput.val(),2)<=0){
-              alert("Please enter a valid positive donation amount.");
+            else if(basicfunctions.numval(donationstable.footamountinput.val(),2)==0){
+              alert("Please enter a valid non-zero donation amount.");
+              donationstable.footamountinput.focus();
+            }
+            else if(basicfunctions.numval(donationstable.footamountinput.val(),2)<0&&(!confirm("Are you sure you meant to enter a negative donation amount? Click OK to continue (pie charts may break) or Cancel to go back."))){
               donationstable.footamountinput.focus();
             }
             else{
               donationstable.footsavebutton.prop("disabled",true);
               donationstable.footcancelbutton.prop("disabled",true);
-              $.post(fixeddata.ajaxformurl,{"action":"adddonation","value0":Math.round(donationstable.footdateinput.datepicker("getDate").getTime()/1000),"value1":checkedcharity,"value2":donationstable.footcurrencyselect.val(),"value3":basicfunctions.numval(donationstable.footamountinput.val(),2,0),"userid":fixeddata.userid,"authentication":dashboarddata.authentication},function(data,textStatus,jqXHR){
+              $.post(fixeddata.ajaxformurl,{"action":"adddonation","value0":Math.round(donationstable.footdateinput.datepicker("getDate").getTime()/1000),"value1":checkedcharity,"value2":donationstable.footcurrencyselect.val(),"value3":basicfunctions.numval(donationstable.footamountinput.val(),2),"userid":fixeddata.userid,"authentication":dashboarddata.authentication},function(data,textStatus,jqXHR){
                 donationstable.footsavebutton.prop("disabled",false);
                 donationstable.footcancelbutton.prop("disabled",false);
                 if(data.status=="success"){
                   dashboarddata.donationsadded++;
-                  dashboarddata.donations.push([donationstable.footdateinput.datepicker("getDate"),checkedcharity,donationstable.footcurrencyselect.val(),basicfunctions.numval(donationstable.footamountinput.val(),2,0),dashboarddata.donationsadded]);
+                  dashboarddata.donations.push([donationstable.footdateinput.datepicker("getDate"),checkedcharity,donationstable.footcurrencyselect.val(),basicfunctions.numval(donationstable.footamountinput.val(),2),dashboarddata.donationsadded]);
                   donationstable.updatebody();
                   donationstable.updatefoot();
                   updatePledgeMeters();
@@ -1720,8 +1726,11 @@ jQuery(function(){(function($,dashboarddata,fixeddata,basicfunctions,visualizati
               if(!checkedcharity){
                 alert("Please select a charity.");
               }
-              else if(basicfunctions.numval(recurringdonationstable.amountinputs[i].val(),2)<=0){
-                alert("Please enter a valid positive donation amount.");
+              else if(basicfunctions.numval(recurringdonationstable.amountinputs[i].val(),2)==0){
+                alert("Please enter a valid non-zero donation amount.");
+                recurringdonationstable.amountinputs[i].focus();
+              }
+              else if(basicfunctions.numval(recurringdonationstable.amountinputs[i].val(),2)<0&&(!confirm("Are you sure you meant to enter a negative donation amount? Click OK to continue (pie charts may break) or Cancel to go back."))){
                 recurringdonationstable.amountinputs[i].focus();
               }
               else{
@@ -1992,8 +2001,11 @@ jQuery(function(){(function($,dashboarddata,fixeddata,basicfunctions,visualizati
             if(!checkedcharity){
               alert("Please select a charity.");
             }
-            else if(basicfunctions.numval(recurringdonationstable.footamountinput.val(),2)<=0){
-              alert("Please enter a valid positive donation amount.");
+            else if(basicfunctions.numval(recurringdonationstable.footamountinput.val(),2)==0){
+              alert("Please enter a valid non-zero donation amount.")
+              recurringdonationstable.footamountinput.focus();
+            }
+            else if(basicfunctions.numval(recurringdonationstable.footamountinput.val(),2)<0&&(!confirm("Are you sure you meant to enter a non-positive donation amount? Click OK to continue (pie charts may break) or Cancel to go back."))){
               recurringdonationstable.footamountinput.focus();
             }
             else{
@@ -2006,12 +2018,12 @@ jQuery(function(){(function($,dashboarddata,fixeddata,basicfunctions,visualizati
               }
               recurringdonationstable.footsavebutton.prop("disabled",true);
               recurringdonationstable.footcancelbutton.prop("disabled",true);
-              $.post(fixeddata.ajaxformurl,{"action":"addrecurringdonation","value0":startdatetimestamp,"value1":enddatetimestamp,"value2":recurringdonationstable.footfrequencyselect.val(),"value3":basicfunctions.numval(recurringdonationstable.footfrequencyamountinput.val(),0),"value4":checkedcharity,"value5":recurringdonationstable.footcurrencyselect.val(),"value6":basicfunctions.numval(recurringdonationstable.footamountinput.val(),2,0),"userid":fixeddata.userid,"authentication":dashboarddata.authentication},function(data,textStatus,jqXHR){
+              $.post(fixeddata.ajaxformurl,{"action":"addrecurringdonation","value0":startdatetimestamp,"value1":enddatetimestamp,"value2":recurringdonationstable.footfrequencyselect.val(),"value3":basicfunctions.numval(recurringdonationstable.footfrequencyamountinput.val(),0),"value4":checkedcharity,"value5":recurringdonationstable.footcurrencyselect.val(),"value6":basicfunctions.numval(recurringdonationstable.footamountinput.val(),2),"userid":fixeddata.userid,"authentication":dashboarddata.authentication},function(data,textStatus,jqXHR){
                 recurringdonationstable.footsavebutton.prop("disabled",false);
                 recurringdonationstable.footcancelbutton.prop("disabled",false);
                 if(data.status=="success"){
                   dashboarddata.recurringdonationsadded++;
-                  dashboarddata.recurringdonations.push([recurringdonationstable.footstartdateinput.datepicker("getDate"),recurringdonationstable.footenddateinput.datepicker("getDate"),recurringdonationstable.footfrequencyselect.val(),basicfunctions.numval(recurringdonationstable.footfrequencyamountinput.val(),0),checkedcharity,recurringdonationstable.footcurrencyselect.val(),basicfunctions.numval(recurringdonationstable.footamountinput.val(),2,0),dashboarddata.recurringdonationsadded]);
+                  dashboarddata.recurringdonations.push([recurringdonationstable.footstartdateinput.datepicker("getDate"),recurringdonationstable.footenddateinput.datepicker("getDate"),recurringdonationstable.footfrequencyselect.val(),basicfunctions.numval(recurringdonationstable.footfrequencyamountinput.val(),0),checkedcharity,recurringdonationstable.footcurrencyselect.val(),basicfunctions.numval(recurringdonationstable.footamountinput.val(),2),dashboarddata.recurringdonationsadded]);
                   recurringdonationstable.updatebody();
                   recurringdonationstable.updatefoot();
                   updatePledgeMeters();
